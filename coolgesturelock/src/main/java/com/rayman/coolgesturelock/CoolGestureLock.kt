@@ -189,7 +189,7 @@ class GestureLock : View {
             }
         }
         lastPoint = null
-        this.invalidate()
+        invalidate()
         return true
     }
 
@@ -203,6 +203,13 @@ class GestureLock : View {
             originalPaint.color = Color.BLACK
             chosenPaint.color = Color.GRAY
         }
+        invalidate()
+    }
+
+    fun setError() {
+        vibrate(2)
+        chosenPaint.color = Color.RED
+        lastPoint = null
         invalidate()
     }
 
