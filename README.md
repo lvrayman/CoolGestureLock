@@ -4,12 +4,12 @@
 在你工程的build.gradle中添加
 
 ```groovy
-	allprojects {
-		repositories {
-			...
-			maven { url 'https://jitpack.io' }
-		}
+allprojects {
+	repositories {
+		...
+		maven { url 'https://jitpack.io' }
 	}
+}
 ```
 
 然后在你module的build.gradle中引用
@@ -32,14 +32,12 @@ dependencies {
 在代码中进行结果监听
 
 ```kotlin
-		gestureLock.onFinishListener = object : GestureLock.OnGestureFinishListener {
-            override fun onFinish(result: String) {
-            }
-
-            override fun onError() {
-            }
-
-        }
+gestureLock.onFinishListener = object : GestureLock.OnGestureFinishListener {
+    override fun onFinish(result: String) {
+    }
+    override fun onError() {
+    }
+}
 ```
 
 当返回结果不正确时，需要手动调用`setError()`
@@ -65,11 +63,11 @@ gestureLock.setEncryptUtil(MyEncryptUtil())
 可在xml代码中通过属性rowCount设置每行点数，默认为3
 
 ```xml
-    <com.rayman.coolgesturelock.GestureLock
-        android:id="@+id/gesture_lock"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        app:rowCount="4" />
+<com.rayman.coolgesturelock.GestureLock
+    android:id="@+id/gesture_lock"
+    android:layout_width="300dp"
+    android:layout_height="300dp"
+    app:rowCount="4" />
 ```
 
 也可在代码中动态进行设置
