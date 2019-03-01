@@ -1,7 +1,7 @@
 package com.rayman.coolgesturelock
 
 /**
- * @author 吕少锐 (lvshaorui@parkingwang.com)
+ * @author 吕少锐 (lvrayman@gmail.com)
  * @version 2019/3/1
  */
 class GesturePoint(val number: Int) {

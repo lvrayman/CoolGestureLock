@@ -12,6 +12,8 @@ import android.os.Vibrator
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
+import com.rayman.coolgesturelock.util.IEncryptUtil
+import com.rayman.coolgesturelock.util.Md5EncryptUtil
 
 
 /**
@@ -40,12 +42,17 @@ class GestureLock : View {
     var onFinishListener: OnGestureFinishListener? = null
 
     private var rowCount = 3
+    private var encryptUtil: IEncryptUtil = Md5EncryptUtil()
 
     fun setRowCount(rowCount: Int) {
         this.rowCount = rowCount
         initPoint()
         initPosition()
         invalidate()
+    }
+
+    fun setEncryptUtil(encryptUtil: IEncryptUtil) {
+        this.encryptUtil = encryptUtil
     }
 
     constructor(context: Context) : super(context) {
@@ -173,7 +180,7 @@ class GestureLock : View {
                         result += it.number
                     }
                     chosenPaint.color = Color.GREEN
-                    onFinishListener?.onFinish(result)
+                    onFinishListener?.onFinish(encryptUtil.encrypt(result))
                 } else {
                     vibrate(2)
                     chosenPaint.color = Color.RED
