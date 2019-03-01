@@ -20,6 +20,6 @@ class MainActivity : AppCompatActivity() {
             }
 
         }
-        gestureLock.rowCount = 4
+        gestureLock.setRowCount(4)
     }
 }

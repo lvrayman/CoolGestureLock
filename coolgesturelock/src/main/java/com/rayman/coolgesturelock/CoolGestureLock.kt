@@ -39,28 +39,34 @@ class GestureLock : View {
 
     var onFinishListener: OnGestureFinishListener? = null
 
-    var rowCount = 3
-        set(value) {
-            field = value
-            initPoint()
-            initPosition()
-            invalidate()
-        }
+    private var rowCount = 3
+
+    fun setRowCount(rowCount: Int) {
+        this.rowCount = rowCount
+        initPoint()
+        initPosition()
+        invalidate()
+    }
 
     constructor(context: Context) : super(context) {
-        init(context)
+        init(context, null)
     }
 
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
-        init(context)
+        init(context, attrs)
     }
 
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
-        init(context)
+        init(context, attrs)
     }
 
-    private fun init(context: Context) {
+    private fun init(context: Context, attrs: AttributeSet?) {
         vibrator = context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+        attrs?.let {
+            val obtainStyledAttributes = context.obtainStyledAttributes(it, R.styleable.GestureLock)
+            rowCount = obtainStyledAttributes.getInteger(R.styleable.GestureLock_rowCount, rowCount)
+            obtainStyledAttributes.recycle()
+        }
         initPoint()
     }
 
