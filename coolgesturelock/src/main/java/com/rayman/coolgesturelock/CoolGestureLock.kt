@@ -149,7 +149,7 @@ class GestureLock : View {
                 currentX = event.x
                 currentY = event.y
                 gesturePointList.forEach {
-                    if (Math.abs(currentX - it.x) < 50 && Math.abs(currentY - it.y) < 50 && !it.isChosen) {
+                    if (Math.abs(currentX - it.x) < 20 && Math.abs(currentY - it.y) < 20 && !it.isChosen) {
                         if (chosenPointList.isNotEmpty()) {
                             val lastPoint = chosenPointList.last()
                             val midX = (lastPoint.x + it.x) / 2
