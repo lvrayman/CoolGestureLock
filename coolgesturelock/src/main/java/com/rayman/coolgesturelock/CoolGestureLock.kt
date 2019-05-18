@@ -12,7 +12,9 @@ import android.os.Vibrator
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
+import com.rayman.coolgesturelock.util.DefaultPointPlainUtil
 import com.rayman.coolgesturelock.util.IEncryptUtil
+import com.rayman.coolgesturelock.util.IPointPlainUtil
 import com.rayman.coolgesturelock.util.Md5EncryptUtil
 
 
@@ -43,6 +45,7 @@ class GestureLock : View {
 
     private var rowCount = 3
     private var encryptUtil: IEncryptUtil = Md5EncryptUtil()
+    private var pointPlainUtil: IPointPlainUtil = DefaultPointPlainUtil()
 
     fun setRowCount(rowCount: Int) {
         this.rowCount = rowCount
@@ -53,6 +56,10 @@ class GestureLock : View {
 
     fun setEncryptUtil(encryptUtil: IEncryptUtil) {
         this.encryptUtil = encryptUtil
+    }
+
+    fun setPointPlainUtil(pointPlainUtil: IPointPlainUtil) {
+        this.pointPlainUtil = pointPlainUtil
     }
 
     constructor(context: Context) : super(context) {
@@ -177,7 +184,7 @@ class GestureLock : View {
                 if (chosenPointList.size > rowCount) {
                     var result = ""
                     chosenPointList.forEach {
-                        result += it.number
+                        result += pointPlainUtil.getPointPlainText(it.number)
                     }
                     chosenPaint.color = Color.GREEN
                     onFinishListener?.onFinish(encryptUtil.encrypt(result))
