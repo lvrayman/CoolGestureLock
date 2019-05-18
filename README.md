@@ -75,3 +75,7 @@ gestureLock.setEncryptUtil(MyEncryptUtil())
 ```kotlin
 gestureLock.setRowCount(4)
 ```
+
+##更新历史
+
+- 1.0.2：新增自定义每个点的值的接口，提供默认返回当前位置的值的默认实现
